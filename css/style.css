@@ -101,3 +101,15 @@ display: inline-block;
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.btn-setting{
+  position: relative;
+  /* border: 2px solid red; */
+}
+
+.btn-setting i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: white
+}
