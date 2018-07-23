@@ -29,10 +29,11 @@ body {
 }
 
 .times {
-border-left: 1px solid #1a7b78;
+    border-left: 1px solid #1a7b78;
     padding: 20px 30px;
     min-width:100px;
     display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
     /* text-align: center; */
 }
 
@@ -52,6 +53,7 @@ border-left: 1px solid #1a7b78;
     text-align: center;
     padding: 5px 20px;
     font-weight: normal;
+    font-size: 20px;
 }
 
 .times h3 {
@@ -76,7 +78,8 @@ display: inline-block;
 }
 
 .btn-location {
-font-size: 18px;
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border-radius: 20px 0 0 20px;
     position: absolute;
     right: 0;
@@ -92,4 +95,9 @@ font-size: 18px;
     height: 30px;
     background-size: cover;
     display: inline-block;
+}
+
+.maghrib h2{
+  padding-left: 0px;
+  padding-right: 0px;
 }
