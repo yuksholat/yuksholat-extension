@@ -1,0 +1,16 @@
+{
+  "name": "Yuk Sholat!",
+  "version": "1.0",
+  "description": "Correct prayer times",
+  "author": "rizkifuad",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "tab-icon.png",
+    "default_title": "Have a good day",
+    "default_popup": "popup.html"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "newtab.html"
+  },
+  "permissions": ["activeTab"]
+}

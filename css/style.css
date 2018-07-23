@@ -1,0 +1,95 @@
+body {
+  background-size: cover;
+  background: #e1dbcf;
+}
+
+.main {
+  margin: 100px auto;
+  width: 800px;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,.5);
+  opacity: .7;
+}
+
+.splash {
+  position: relative;
+  border-radius: 7px 7px 0 0;
+  background: url('../bg-image/masjid.jpg');
+  background-size: cover;
+  height: 400px;
+  
+}
+
+.timesheet {
+    border-radius: 0 0 7px 7px;
+  background: #00A8A8;
+  display: flex;
+  justify-content: center;
+}
+
+.times {
+border-left: 1px solid #1a7b78;
+    padding: 20px 30px;
+    min-width:100px;
+    display: inline-block;
+    /* text-align: center; */
+}
+
+.times:nth-child(1) {
+  border-left: none;
+}
+
+.times h2, .times h3 {
+  text-align: center;
+}
+
+.times h2 {
+    margin: auto;
+    border-radius: 17px;
+    background: #069898;
+    color: #fff;
+    text-align: center;
+    padding: 5px 20px;
+    font-weight: normal;
+}
+
+.times h3 {
+  color: #fff;
+  font-size: 28px;
+}
+.timenow {
+display: inline-block;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    /* top: 0; */
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    /* margin-left: auto; */
+    position: absolute;
+    font-weight: bold;
+    font-size: 40px;
+    opacity: .5;
+    margin: auto;
+}
+
+.btn-location {
+font-size: 18px;
+    border-radius: 20px 0 0 20px;
+    position: absolute;
+    right: 0;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    bottom: 30%;
+    padding: 10px 30px;
+}
+
+.icon-location {
+    background: url(../loc.png);
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    display: inline-block;
+}
