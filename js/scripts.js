@@ -102,6 +102,8 @@ function printtime() {
     ISHA_WRAPPER.classList.add('activeWrapper')
   }
 
+  
+                                       
 
   today = h + ':' + m + ':' + s
   document.querySelector('.timenow').innerHTML = today
