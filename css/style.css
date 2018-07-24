@@ -123,3 +123,16 @@ h4#city {
   top: 10px;
   color: white
 }
+
+
+.activeWrapper{
+  background: rgb(226, 188, 93) !important
+}
+
+.activeText{
+  background: rgb(216, 177, 72) !important
+}
+
+.active{
+  color: white
+}

@@ -52,6 +52,10 @@ function printtime() {
   
   // subuh
   if(todayHour > times.isha && todayHour < times.fajr) {
+    ISHA.classList.remove('active')
+    ISHA_TEXT.classList.remove('activeText')
+    ISHA_WRAPPER.classList.remove('activeWrapper')
+
     SHUBUH.style.color = "white"
     SHUBUH_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
     SHUBUH_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
@@ -59,6 +63,10 @@ function printtime() {
 
   // dhuhr
   if(todayHour > times.fajr && todayHour < times.dhuhr) {
+    SHUBUH.classList.remove('active')
+    SHUBUH_TEXT.classList.remove('activeText')
+    SHUBUH_WRAPPER.classList.remove('activeWrapper')
+
     DZUHUR.style.color = "white"
     DZUHUR_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
     DZUHUR_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
@@ -66,24 +74,35 @@ function printtime() {
 
   // ashar 
   if(todayHour > times.dhuhr && todayHour < times.asr) {
-    ASHAR.style.color = "white"
-    ASHAR_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
-    ASHAR_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
-    
+    DZUHUR.classList.remove('active')
+    DZUHUR_TEXT.classList.remove('activeText')
+    DZUHUR_WRAPPER.classList.remove('activeWrapper')
+
+    ASHAR.classList.add('active')
+    ASHAR_TEXT.classList.add('activeText')
+    ASHAR_WRAPPER.classList.add('activeWrapper')
   }
 
   // maghrib
   if(todayHour > times.asr && todayHour < times.maghrib) {
-    MAGHRIB.style.color = "white"
-    MAGHRIB_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
-    MAGHRIB_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
+    ASHAR.classList.remove('active')
+    ASHAR_TEXT.classList.remove('activeText')
+    ASHAR_WRAPPER.classList.remove('activeWrapper')
+
+    MAGHRIB.classList.add('active')
+    MAGHRIB_TEXT.classList.add('activeText')
+    MAGHRIB_WRAPPER.classList.add('activeWrapper')
   }
 
   // isha
   if(todayHour > times.maghrib && todayHour < times.isha ) {
-    ISHA.style.color = "white"
-    ISHA_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
-    ISHA_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
+    MAGHRIB.classList.remove('active')
+    MAGHRIB_TEXT.classList.remove('activeText')
+    MAGHRIB_WRAPPER.classList.remove('activeWrapper')
+
+    ISHA.classList.add('active')
+    ISHA_TEXT.classList.add('activeText')
+    ISHA_WRAPPER.classList.add('activeWrapper')
   }
   
 
