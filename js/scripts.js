@@ -97,11 +97,13 @@ printtime()
 
 var db = new PouchDB('yuksholat_db');
 
+function geoError(error) {
+    console.log(error)
+}
+
 function fetchLocation() {
-  navigator.permissions.query({name:'geolocation'}).then(function(result) {
-    navigator.geolocation.getCurrentPosition(saveLocation);
     btnLocateMe.classList.add("hide");
-  })
+    navigator.geolocation.getCurrentPosition(saveLocation, geoError);
 }
 
 function reloadPrayerTimes(location, tz) {
@@ -118,14 +120,17 @@ function reloadPrayerTimes(location, tz) {
 
 function getLocation() {
   db.get('location').then(function(location) {
+      console.log(location)
     if (!location) return fetchLocation()
     reloadPrayerTimes(location, 7)
   }).catch(function(e) {
+      console.error(e)
     fetchLocation()
   })
 }
 
 function saveLocation(position) {
+    console.log('call', position)
   var location = {
     _id: 'location',
     latitude: position.coords.latitude,
@@ -145,10 +150,13 @@ function saveLocation(position) {
     db.get('location').then(function(loc) {
       loc.city = resp.data.results[2].formatted_address
       _loc = loc
+        console.log(loc)
       return db.put(loc)
     }).then(function() {
       reloadPrayerTimes(_loc, 7)
     }).catch(function(e) {
+        location.city = resp.data.results[2].formatted_address
+        db.put(location)
       reloadPrayerTimes(location, 7)
     })
   })
