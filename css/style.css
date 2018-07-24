@@ -61,40 +61,50 @@ body {
   color: #fff;
   font-size: 28px;
 }
+.hide {display:none}
+
 .timenow {
-display: inline-block;
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
-    /* top: 0; */
-    bottom: 30%;
-    left: 0;
-    right: 0;
-    /* margin-left: auto; */
-    position: absolute;
-    font-weight: bold;
-    font-size: 40px;
-    opacity: .5;
-    margin: auto;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  /* top: 0; */
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  /* margin-left: auto; */
+  position: absolute;
+  font-weight: bold;
+  font-size: 40px;
+  opacity: .5;
+  margin: auto;
 }
 
-.btn-location {
-    font-size: 18px;
-    border-radius: 20px 0 0 20px;
-    position: absolute;
-    right: 0;
-    background: rgba(0,0,0,.8);
-    color: #fff;
-    bottom: 30%;
-    padding: 10px 30px;
+#btn-location {
+  font-size: 18px;
+  border-radius: 20px 0 0 20px;
+  position: absolute;
+  right: 0;
+  color: #fff;
+  top: 10%;
+  padding: 10px 30px;
+  cursor: pointer;
 }
 
 .icon-location {
-    background: url(../loc.png);
-    width: 30px;
-    height: 30px;
-    background-size: cover;
-    display: inline-block;
+  background: url(../loc.png);
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+h4#city {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
 }
 
 .maghrib h2{
