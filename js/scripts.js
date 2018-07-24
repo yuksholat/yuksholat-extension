@@ -37,7 +37,7 @@ function fixtime(i) {
 }
 
 var todayDate = moment().format("YYYY-MM-DD"),
-tomorrowDate = moment().add(1, 'day').format("YYYY-MM-DD")
+  tomorrowDate = moment().add(1, 'day').format("YYYY-MM-DD")
 
 function printtime() {
   if (!times) {
@@ -49,7 +49,7 @@ function printtime() {
   var s = fixtime(today.getSeconds())
 
   var todayHour = `${h}:${m}`
-  
+
   // subuh
   if(todayHour > times.isha && todayHour < times.fajr) {
     SHUBUH.style.color = "white"
@@ -69,7 +69,7 @@ function printtime() {
     ASHAR.style.color = "white"
     ASHAR_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
     ASHAR_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
-    
+
   }
 
   // maghrib
@@ -85,7 +85,7 @@ function printtime() {
     ISHA_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
     ISHA_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
   }
-  
+
 
   today = h + ':' + m + ':' + s
   document.querySelector('.timenow').innerHTML = today
@@ -98,12 +98,11 @@ printtime()
 var db = new PouchDB('yuksholat_db');
 
 function geoError(error) {
-    console.log(error)
+  console.log(error)
 }
 
 function fetchLocation() {
-    btnLocateMe.classList.add("hide");
-    navigator.geolocation.getCurrentPosition(saveLocation, geoError);
+  navigator.geolocation.getCurrentPosition(saveLocation, geoError);
 }
 
 function reloadPrayerTimes(location, tz) {
@@ -120,23 +119,23 @@ function reloadPrayerTimes(location, tz) {
 
 function getLocation() {
   db.get('location').then(function(location) {
-      console.log(location)
+    console.log(location)
     if (!location) return fetchLocation()
     reloadPrayerTimes(location, 7)
   }).catch(function(e) {
-      console.error(e)
+    console.error(e)
     fetchLocation()
   })
 }
 
 function saveLocation(position) {
-    console.log('call', position)
+  btnLocateMe.classList.add("hide");
   var location = {
     _id: 'location',
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
   }
-  
+
 
   var data = {
     key: 'AIzaSyA3UliJJ2Pni6qpL6BG2vlzpZWxip6zADg',
@@ -150,13 +149,13 @@ function saveLocation(position) {
     db.get('location').then(function(loc) {
       loc.city = resp.data.results[2].formatted_address
       _loc = loc
-        console.log(loc)
+      console.log(loc)
       return db.put(loc)
     }).then(function() {
       reloadPrayerTimes(_loc, 7)
     }).catch(function(e) {
-        location.city = resp.data.results[2].formatted_address
-        db.put(location)
+      location.city = resp.data.results[2].formatted_address
+      db.put(location)
       reloadPrayerTimes(location, 7)
     })
   })
@@ -178,7 +177,7 @@ getLocation()
 var btnLocateMe = document.getElementById("btn-locate-me")
 
 document.getElementById("btn-location").addEventListener("click", function(){
-  btnLocateMe.classList.remove("hide");
+  btnLocateMe.classList.toggle("hide");
 });
 
 btnLocateMe.addEventListener("click", function(){

@@ -123,3 +123,15 @@ h4#city {
   top: 10px;
   color: white
 }
+
+#btn-locate-me:not(.hide) {
+  display: block;
+  border: none;
+  padding: 10px 20px;
+  background: #e1c57f;
+  font-weight: bold;
+  border-radius: 10px;
+  color: #7c621b;
+  text-align: center;
+  margin: 0 auto;
+}
