@@ -56,9 +56,9 @@ function printtime() {
     ISHA_TEXT.classList.remove('activeText')
     ISHA_WRAPPER.classList.remove('activeWrapper')
 
-    SHUBUH.style.color = "white"
-    SHUBUH_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
-    SHUBUH_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
+    SHUBUH.classList.add('active')
+    SHUBUH_TEXT.classList.add('activeText')
+    SHUBUH_WRAPPER.classList.add('activeWrapper')
   }
 
   // dhuhr
@@ -67,9 +67,9 @@ function printtime() {
     SHUBUH_TEXT.classList.remove('activeText')
     SHUBUH_WRAPPER.classList.remove('activeWrapper')
 
-    DZUHUR.style.color = "white"
-    DZUHUR_TEXT.style.backgroundColor = "rgb(216, 177, 72)"
-    DZUHUR_WRAPPER.style.backgroundColor = "rgb(226, 188, 93)"
+    DZUHUR.classList.add('active')
+    DZUHUR_TEXT.classList.add('activeText')
+    DZUHUR_WRAPPER.classList.add('activeWrapper')
   }
 
   // ashar 
