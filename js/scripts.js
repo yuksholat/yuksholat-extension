@@ -36,9 +36,6 @@ function fixtime(i) {
 
 }
 
-var todayDate = moment().format("YYYY-MM-DD"),
-  tomorrowDate = moment().add(1, 'day').format("YYYY-MM-DD")
-
 function printtime() {
   if (!times) {
     setTimeout(printtime, 1000)
