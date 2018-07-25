@@ -1,12 +1,12 @@
 {
   "name": "Yuk Sholat!",
   "version": "1.0",
-  "description": "Correct prayer times",
+  "description": "Beatifully crafted prayer times widget for your chrome landing page",
   "author": "rizkifuad",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": "tab-icon.png",
-    "default_title": "Have a good day"
+    "default_title": "Beatifully crafted prayer times widget for your chrome landing page"
   },
   "chrome_url_overrides" : {
     "newtab": "newtab.html"
