@@ -137,8 +137,7 @@ function reloadPrayerTimes(location, tz) {
 
 function getLocation() {
   db.get('location').then(function(location) {
-    console.log(location)
-    if (!location) return fetchLocation()
+    if (!location || !location.version) return fetchLocation()
     reloadPrayerTimes(location, 7)
   }).catch(function(e) {
     console.error(e)
@@ -164,21 +163,37 @@ function saveLocation(position) {
   var url = 'https://maps.googleapis.com/maps/api/geocode/json?' + parseUrlEncoded(data)
   var _loc
   axios.get(url).then(function(resp) {
+    var formatted_city = formatCity(resp.data.results)
     db.get('location').then(function(loc) {
-      loc.city = resp.data.results[2].formatted_address
+      loc.city = formatted_city
+      loc.version = 2
       _loc = loc
-      console.log(loc)
       return db.put(loc)
     }).then(function() {
       reloadPrayerTimes(_loc, 7)
     }).catch(function(e) {
-      location.city = resp.data.results[2].formatted_address
+      location.city = formatted_city
       db.put(location)
       reloadPrayerTimes(location, 7)
     })
   })
 
 
+}
+
+function formatCity(results) {
+  var index = 0
+  for (var i in results) {
+    if (results[i].types && results[i].types[0] === 'administrative_area_level_3') {
+      index = i
+      break;
+    }
+
+  }
+
+  var path =  results[index].formatted_address.split(',').splice(0, 2).join(',')
+
+  return path
 }
 
 
@@ -201,3 +216,5 @@ document.getElementById("btn-location").addEventListener("click", function(){
 btnLocateMe.addEventListener("click", function(){
   fetchLocation()
 });
+
+
