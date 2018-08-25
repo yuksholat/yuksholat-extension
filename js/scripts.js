@@ -56,6 +56,8 @@ function printtime() {
     SHUBUH.classList.add('active')
     SHUBUH_TEXT.classList.add('activeText')
     SHUBUH_WRAPPER.classList.add('activeWrapper')
+
+	countDownNotification("Shubuh", times.fajr)
   }
 
   // dhuhr
@@ -67,6 +69,9 @@ function printtime() {
     DZUHUR.classList.add('active')
     DZUHUR_TEXT.classList.add('activeText')
     DZUHUR_WRAPPER.classList.add('activeWrapper')
+	
+	countDownNotification("Dhuhr", times.dhuhr)
+	
   }
 
   // ashar 
@@ -78,6 +83,8 @@ function printtime() {
     ASHAR.classList.add('active')
     ASHAR_TEXT.classList.add('activeText')
     ASHAR_WRAPPER.classList.add('activeWrapper')
+
+	countDownNotification("Asr", times.asr)
   }
 
   // maghrib
@@ -89,6 +96,8 @@ function printtime() {
     MAGHRIB.classList.add('active')
     MAGHRIB_TEXT.classList.add('activeText')
     MAGHRIB_WRAPPER.classList.add('activeWrapper')
+
+    countDownNotification("Maghrib", times.maghrib)
   }
 
   // isha
@@ -100,6 +109,8 @@ function printtime() {
     ISHA.classList.add('active')
     ISHA_TEXT.classList.add('activeText')
     ISHA_WRAPPER.classList.add('activeWrapper')
+
+    countDownNotification("Isha", "18:32")
   }
 
   
@@ -216,5 +227,6 @@ document.getElementById("btn-location").addEventListener("click", function(){
 btnLocateMe.addEventListener("click", function(){
   fetchLocation()
 });
+
 
 
