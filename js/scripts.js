@@ -9,7 +9,7 @@ var MAGHRIB = document.querySelector(".maghrib h3")
 var ISHA = document.querySelector(".isha h3")
 
 var cityText = document.querySelector("h4#city")
-var hijrCal = document.querySelector(".hijr>span")
+var hijrCal = document.querySelector(".hijr span")
 
 var SHUBUH_WRAPPER = document.querySelector(".fajr")
 var DZUHUR_WRAPPER = document.querySelector(".dhuhr")
