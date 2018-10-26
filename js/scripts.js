@@ -62,6 +62,7 @@ function printtime() {
     SHUBUH_TEXT.classList.add('activeText')
     SHUBUH_WRAPPER.classList.add('activeWrapper')
 
+
 	countDownNotification("Shubuh", times.fajr)
   }
 
@@ -75,6 +76,7 @@ function printtime() {
     DZUHUR_TEXT.classList.add('activeText')
     DZUHUR_WRAPPER.classList.add('activeWrapper')
 	
+
 	countDownNotification("Dhuhr", times.dhuhr)
 	
   }
@@ -89,6 +91,7 @@ function printtime() {
     ASHAR_TEXT.classList.add('activeText')
     ASHAR_WRAPPER.classList.add('activeWrapper')
 
+
 	countDownNotification("Asr", times.asr)
   }
 
@@ -101,6 +104,7 @@ function printtime() {
     MAGHRIB.classList.add('active')
     MAGHRIB_TEXT.classList.add('activeText')
     MAGHRIB_WRAPPER.classList.add('activeWrapper')
+
 
     countDownNotification("Maghrib", times.maghrib)
   }
