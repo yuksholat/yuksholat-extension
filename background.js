@@ -9,10 +9,8 @@ var options = {
 // chrome.notifications.create(options, callback)
 
 function callback() {
-  console.log('is it')
+    console.log('showed')
 }
-
-
 
 function showNotification(timeName, msg){
     options.title = `${timeName} Time`
