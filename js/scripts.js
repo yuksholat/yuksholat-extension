@@ -9,6 +9,7 @@ var MAGHRIB = document.querySelector(".maghrib h3")
 var ISHA = document.querySelector(".isha h3")
 
 var cityText = document.querySelector("h4#city")
+var hijrCal = document.querySelector(".hijr>span")
 
 var SHUBUH_WRAPPER = document.querySelector(".fajr")
 var DZUHUR_WRAPPER = document.querySelector(".dhuhr")
@@ -22,6 +23,10 @@ var ASHAR_TEXT = document.querySelector(".asr h2")
 var DZUHUR_TEXT = document.querySelector(".dhuhr h2")
 var ISHA_TEXT = document.querySelector(".isha h2")
 
+
+// set hijr cal
+moment.locale('en-EN')
+hijrCal.innerHTML = moment().format('dddd, iD iMMMM iYYYY ') + 'H';
 
 var prayTimes = new PrayTimes('Kemenag')
 var times
