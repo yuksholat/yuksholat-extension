@@ -1,0 +1,40 @@
+{
+  "name": "yuksholat",
+  "version": "0.0.2",
+  "description": "beautifully crafted azan notification for your chrome browser",
+  "main": "background.js",
+  "scripts": {
+    "build": "browserify src/main.ts -p [ tsify --noImplicitAny ] > public/js/main.js",
+    "build:background": "browserify src/background.ts -p [ tsify --noImplicitAny ] > public/js/background.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizkix/yuksholat.git"
+  },
+  "author": "rizkix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rizkix/yuksholat/issues"
+  },
+  "homepage": "https://github.com/rizkix/yuksholat#readme",
+  "dependencies": {
+    "@types/chrome": "0.0.75",
+    "@types/pouchdb": "^6.3.2",
+    "axios": "^0.18.0",
+    "moment": "^2.22.2",
+    "pouchdb": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-typescript": "^7.1.0",
+    "browserify": "^16.2.3",
+    "tsify": "^4.0.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  }
+}

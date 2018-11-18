@@ -1,4 +1,4 @@
-# todo
+# Todo
 
 - [] pouch db
 - [] settings
