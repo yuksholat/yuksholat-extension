@@ -5,7 +5,7 @@ export interface IParams {
   dhuhr?: number | string;
   asr?: number | string;
   highLats?: number | string;
-  maghrib?: number;
+  maghrib?: number | string;
   midnight?: string;
 }
 export interface IMethod {

@@ -202,13 +202,15 @@ export default class PrayerTimes {
 
   constructor(method: string) {
     this.calcMethod = method;
-    this.params = methods[this.calcMethod].params;
     this.setting = {
-      imsak    : "10 min",
-      dhuhr    : "0 min",
+      imsak    : 10,
+      dhuhr    : 0,
       asr      : "Standard",
       highLats : "NightMiddle",
+      maghrib: 0,
+      midnight: "Standard",
     };
+    this.params = { ...methods[this.calcMethod].params, ...this.setting };
 
     for (const i in timeNames) {
       if (i) {
@@ -369,14 +371,15 @@ export default class PrayerTimes {
     computePrayerTimes(times: ITimes) {
       times = this.dayPortion(times);
 
-      const imsak   = this.sunAngleTime(this.eval(this.params.imsak), times.imsak, "ccw");
-      const fajr    = this.sunAngleTime(this.eval(this.params.fajr), times.fajr, "ccw");
+      const imsak   = this.sunAngleTime(this.params.imsak, times.imsak, "ccw");
+      const fajr    = this.sunAngleTime(this.params.fajr, times.fajr, "ccw");
       const sunrise = this.sunAngleTime(this.riseSetAngle(), times.sunrise, "ccw");
       const dhuhr   = this.midDay(times.dhuhr);
       const asr     = this.asrTime(this.asrFactor(this.params.asr), times.asr);
       const sunset  = this.sunAngleTime(this.riseSetAngle(), times.sunset);
-      const maghrib = this.sunAngleTime(this.eval(this.params.maghrib), times.maghrib);
-      const isha    = this.sunAngleTime(this.eval(this.params.isha), times.isha);
+      const maghrib = this.sunAngleTime(this.params.maghrib, times.maghrib);
+      const isha    = this.sunAngleTime(this.params.isha, times.isha);
+
 
       return {
         imsak, fajr, sunrise, dhuhr,
@@ -394,12 +397,12 @@ export default class PrayerTimes {
       };
 
       // main iterations
-      for (let i = 1 ; i <= numIterations ; i++) {
+      for (let i = 1 ; i <= numIterations; i++) {
         times = this.computePrayerTimes(times);
       }
 
-      times = this.adjustTimes(times);
 
+      times = this.adjustTimes(times);
       // add midnight time
       times.midnight = (this.setting.midnight === "Jafari") ?
         times.sunset + this.timeDiff(times.sunset, times.fajr) / 2 :
@@ -414,37 +417,35 @@ export default class PrayerTimes {
     adjustTimes(times: ITimes) {
       for (const i in times) {
         if (i) {
-          times[i] = this.timeZone - this.lng / 15;
+          times[i] += this.timeZone - this.lng / 15;
         }
       }
+
 
       if (this.params.highLats !== "None") {
         times = this.adjustHighLats(times);
       }
 
       if (this.isMin(this.params.imsak)) {
-        times.imsak = times.fajr - this.eval(this.params.imsak) / 60;
+        times.imsak = times.fajr - this.params.imsak / 60;
       }
       if (this.isMin(this.params.maghrib)) {
-        times.maghrib = times.sunset + this.eval(this.params.maghrib) / 60;
+        times.maghrib = times.sunset + this.params.maghrib / 60;
       }
       if (this.isMin(this.params.isha)) {
-        times.isha = times.maghrib + this.eval(this.params.isha) / 60;
+        times.isha = times.maghrib + this.params.isha / 60;
       }
-      times.dhuhr += this.eval(this.params.dhuhr) / 60;
-
-      console.log("adjustTimes", times);
+      times.dhuhr += this.params.dhuhr / 60;
 
       return times;
     }
 
 
     // get asr shadow factor
-    asrFactor(asrParam: number) {
+    asrFactor(asrParam: string) {
       // Standard = 1, Hanafi = 2
-      const factors = [1, 2];
-      const factor = factors[asrParam];
-      return factor || this.eval(asrParam + "");
+      const factors: {[name: string]: number} = {Standard: 1, Hanafi: 2};
+      return factors[asrParam];
     }
 
 
@@ -485,10 +486,10 @@ export default class PrayerTimes {
     adjustHighLats(times: ITimes) {
       const nightTime = this.timeDiff(times.sunset, times.sunrise);
 
-      times.imsak = this.adjustHLTime(times.imsak, times.sunrise, this.eval(this.params.imsak), nightTime, "ccw");
-      times.fajr  = this.adjustHLTime(times.fajr, times.sunrise, this.eval(this.params.fajr), nightTime, "ccw");
-      times.isha  = this.adjustHLTime(times.isha, times.sunset, this.eval(this.params.isha), nightTime);
-      times.maghrib = this.adjustHLTime(times.maghrib, times.sunset, this.eval(this.params.maghrib), nightTime);
+      times.imsak = this.adjustHLTime(times.imsak, times.sunrise, this.params.imsak, nightTime, "ccw");
+      times.fajr  = this.adjustHLTime(times.fajr, times.sunrise, this.params.fajr, nightTime, "ccw");
+      times.isha  = this.adjustHLTime(times.isha, times.sunset, this.params.isha, nightTime);
+      times.maghrib = this.adjustHLTime(times.maghrib, times.sunset, this.params.maghrib, nightTime);
 
       return times;
     }

@@ -40,7 +40,7 @@ hijrCal.innerHTML = moment().format("dddd, iD iMMMM iYYYY ") + "H";
 
 const prayTimes = new PrayerTimes("Kemenag");
 let times: ITimesFormatted = {};
-reloadPrayerTimes({latitude: DEFAULT_LATITUDE, longitude: DEFAULT_LONGITUDE}, DEFAULT_TIMEZONE);
+// reloadPrayerTimes({latitude: DEFAULT_LATITUDE, longitude: DEFAULT_LONGITUDE}, DEFAULT_TIMEZONE);
 
 function fixtime(i: number) {
   if (i < 10) {
@@ -141,7 +141,6 @@ printtime();
 const db = new PouchDB("yuksholat_db");
 
 function geoError(error: any) {
-  console.log(error);
 }
 
 function fetchLocation() {
@@ -150,7 +149,6 @@ function fetchLocation() {
 
 function reloadPrayerTimes(location: {latitude: number, longitude: number, city?: string}, tz: number) {
   times = prayTimes.getTimes(new Date(), [location.latitude, location.longitude], tz);
-  console.log({times, location, tz});
 
   SHUBUH.innerHTML = times.fajr;
   DZUHUR.innerHTML = times.dhuhr;
@@ -171,7 +169,6 @@ async function getLocation() {
     reloadPrayerTimes(location, 7);
 
   } catch (e) {
-    console.log(e);
     fetchLocation();
   }
 }
@@ -198,7 +195,6 @@ async function saveLocation(position: any) {
     const resp = await axios.get(url);
     formattedCity = formatCity(resp.data.results);
   } catch (e) {
-    console.log("failed to fetch from google api");
     return;
   }
 
