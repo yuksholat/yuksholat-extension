@@ -3,7 +3,7 @@
 Beatifully crafted prayer times widget for your chrome landing page.
 [Chrome Web Store](https://chrome.google.com/webstore/detail/yuk-sholat/plgjdlhiogchdnbfdcieojfmpbofkjgj)
 
-![Screenshot](https://github.com/rizkix/yuksholat/blob/migrate-ts/screenshot.png)
+![Screenshot](https://github.com/rizkix/yuksholat/blob/master/screenshot.png)
 
 # Building
 
