@@ -5,19 +5,19 @@
   "author": "rizkifuad",
   "manifest_version": 2,
   "browser_action": {
-    "default_icon": "tab-icon.png",
+    "default_icon": "public/images/tab-icon.png",
     "default_title": "Beatifully crafted prayer times widget for your chrome landing page"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["public/js/background.js"]
   },
   "icons": { 
-    "16": "tab-icon-small.png",
-    "48": "tab-icon.png",
-    "128": "tab-icon.png" 
+    "16": "public/images/tab-icon-small.png",
+    "48": "public/images/tab-icon.png",
+    "128": "public/images/tab-icon.png" 
   },
   "chrome_url_overrides" : {
-    "newtab": "newtab.html"
+    "newtab": "public/newtab.html"
   },
   "permissions": ["activeTab", "geolocation", "notifications"]
 }
