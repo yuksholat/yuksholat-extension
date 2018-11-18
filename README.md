@@ -16,3 +16,11 @@ npm run build
 
 Open `public/newtab.html` with your favourite browser.
 
+# Todo 
+
+- Refactor notification
+- Setting page
+  - Notification setting
+  - Method setting
+  - Custom template
+
