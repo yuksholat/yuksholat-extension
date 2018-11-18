@@ -403,7 +403,6 @@ export default class PrayerTimes {
 
 
       times = this.adjustTimes(times);
-      // add midnight time
       times.midnight = (this.setting.midnight === "Jafari") ?
         times.sunset + this.timeDiff(times.sunset, times.fajr) / 2 :
         times.sunset + this.timeDiff(times.sunset, times.sunrise) / 2;
@@ -421,7 +420,6 @@ export default class PrayerTimes {
         }
       }
 
-
       if (this.params.highLats !== "None") {
         times = this.adjustHighLats(times);
       }
@@ -429,9 +427,7 @@ export default class PrayerTimes {
       if (this.isMin(this.params.imsak)) {
         times.imsak = times.fajr - this.params.imsak / 60;
       }
-      if (this.isMin(this.params.maghrib)) {
-        times.maghrib = times.sunset + this.params.maghrib / 60;
-      }
+      times.maghrib = times.sunset + this.params.maghrib / 60;
       if (this.isMin(this.params.isha)) {
         times.isha = times.maghrib + this.params.isha / 60;
       }

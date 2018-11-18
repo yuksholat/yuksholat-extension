@@ -6,7 +6,7 @@ import {
   ITimes, ITimesFormatted,
 } from "./interface/common";
 import PrayerTimes from "./libs/prayer_times";
-
+const momentHijr = require("moment-hijri");
 
 const DEFAULT_LATITUDE = -5.7768256;
 const DEFAULT_LONGITUDE = 106.397789;
@@ -33,10 +33,11 @@ const ASHAR_TEXT = document.querySelector(".asr h2");
 const DZUHUR_TEXT = document.querySelector(".dhuhr h2");
 const ISHA_TEXT = document.querySelector(".isha h2");
 
-
-// set hijr cal
 moment.locale("en-EN");
-hijrCal.innerHTML = moment().format("dddd, iD iMMMM iYYYY ") + "H";
+const hijrCalendar = momentHijr().format("iD iMMMM");
+const hijrYear = momentHijr().format("iYYYY");
+
+hijrCal.innerHTML = `${hijrCalendar} <br/> ${hijrYear} H`;
 
 const prayTimes = new PrayerTimes("Kemenag");
 let times: ITimesFormatted = {};
