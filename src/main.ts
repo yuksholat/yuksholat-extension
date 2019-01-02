@@ -201,12 +201,16 @@ async function saveLocation(position: any) {
 
   try {
     const loc: any = await db.get("location");
+    loc.latitude = position.coords.latitude;
+    loc.longitude = position.coords.longitude;
     loc.city = formattedCity;
     loc.version = 2;
     await db.put(loc);
     reloadPrayerTimes(loc, 7);
   } catch (e) {
     location.city = formattedCity;
+    location.latitude = position.coords.latitude;
+    location.longitude = position.coords.longitude;
     db.put(location);
     reloadPrayerTimes(location, 7);
   }

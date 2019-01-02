@@ -4,8 +4,8 @@
   "description": "beautifully crafted azan notification for your chrome browser",
   "main": "background.js",
   "scripts": {
-    "build:main": "browserify src/main.ts -p [ tsify --noImplicitAny ] -o public/js/main.js",
-    "build:background": "browserify src/background.ts -p [ tsify --noImplicitAny ] > public/js/background.js",
+    "build:main": "node_modules/browserify/bin/cmd.js src/main.ts -p [ tsify --noImplicitAny ] -o public/js/main.js",
+    "build:background": "node_modules/browserify/bin/cmd.js src/background.ts -p [ tsify --noImplicitAny ] > public/js/background.js",
     "build": "npm run build:main && npm run build:background",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
