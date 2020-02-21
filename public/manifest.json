@@ -1,23 +1,21 @@
+
 {
   "name": "Yuk Sholat!",
-  "version": "0.0.0.5",
+  "version": "0.0.1.0",
   "description": "Beatifully crafted prayer times widget for your chrome landing page",
   "author": "rizkifuad",
   "manifest_version": 2,
   "browser_action": {
-    "default_icon": "public/images/tab-icon.png",
+    "default_icon": "favicon.png",
     "default_title": "Beatifully crafted prayer times widget for your chrome landing page"
   },
-  "background": {
-    "scripts": ["public/js/background.js"]
-  },
-  "icons": { 
-    "16": "public/images/tab-icon-small.png",
-    "48": "public/images/tab-icon.png",
-    "128": "public/images/tab-icon.png" 
+  "icons": {
+    "16": "/themes/classic/images/tab-icon-small.png",
+    "48": "/themes/classic/images/tab-icon.png",
+    "128":"/themes/classic/images/tab-icon.png" 
   },
   "chrome_url_overrides" : {
-    "newtab": "public/newtab.html"
+    "newtab": "index.html"
   },
   "permissions": ["activeTab", "geolocation", "notifications"]
 }
