@@ -23,7 +23,7 @@
             </div>
             <div class="timenow">{now}</div>
             <div id="btn-location" on:click={handleLocationClick}>
-                <img src="/themes/classic/images/loc.png" width="30" style="vertical-align: middle;-webkit-filter: drop-shadow(2px 1px 1px rgba(0,0,0,.5));filter: drop-shadow(2px 1px 1px rgba(0,0,0,.5));" >
+                <img alt={$data.city} src="/themes/classic/images/loc.png" width="30" style="vertical-align: middle;-webkit-filter: drop-shadow(2px 1px 1px rgba(0,0,0,.5));filter: drop-shadow(2px 1px 1px rgba(0,0,0,.5));" >
                 <h4 id="city">{$data.city}</h4>
             </div>
         </div>

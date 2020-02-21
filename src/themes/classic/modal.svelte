@@ -19,17 +19,16 @@
     }
 
     async function saveLocation() {
+        onClose()
         if (savedPosition) {
             await data.setUserLocationData(savedPosition.latitude, savedPosition.longitude);
         }
         window.location.reload()
-        onClose()
     }
 
     async function search() {
         if (inputQuery) {
             const position = await data.search(inputQuery)
-            console.log({position})
             city = position.city;
             savedPosition = position;
         }
@@ -60,9 +59,9 @@
                 </span>
             </div>
             <div class="control">
-                <a class="button is-info" on:click={search}>
+                <button class="button is-info" on:click={search}>
                     Cari
-                </a>
+                </button>
             </div>
         </div>
     </section>
