@@ -5,7 +5,7 @@ import moment from "moment";
 import momentHijr from "moment-hijri";
 
 const storage = localStorage.getItem("data")
-const baseUrl = "https://yuksholat.rizkifuad.com"
+const baseUrl = "https://api.yuksholat.com"
 
 moment.locale("en-EN");
 
@@ -17,7 +17,9 @@ function createDataStore() {
         latitude: -5.7768256,
         longitude: 106.397789,
         tz: 7,
-        city: "Jakarta"
+        city: "Jakarta",
+        theme: "modern"
+
     }
     const data = writable(defaults);
     const { subscribe, set, update } = data;
@@ -76,13 +78,14 @@ function createDataStore() {
     }
 
     const setUserLocationData = async (latitude, longitude) => {
+        const $data = get(data)
         updateData({ latitude, longitude })
         getPrayerTimes()
 
         const city = await getCity(latitude, longitude);
 
         updateData({ city })
-        saveStorage({ latitude, longitude, city });
+        saveStorage({ latitude, longitude, city, theme: $data.theme });
     }
 
     const search = async (q) => {
@@ -104,6 +107,12 @@ function createDataStore() {
 
     }
 
+    const changeTheme = (theme) => {
+        updateData({ theme })
+        const { latitude, longitude, city } = get(data)
+        saveStorage({ latitude, longitude, city, theme });
+    }
+
     const init = async () => {
         try {
             const storage = localStorage.getItem("data")
@@ -121,7 +130,8 @@ function createDataStore() {
             }
         } catch (e) {
             localStorage.removeItem("data")
-            setUserLocationData()
+            const position = await locate()
+            setUserLocationData(position.latitude, position.longitude)
         }
     }
 

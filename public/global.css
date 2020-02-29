@@ -5,6 +5,8 @@ html, body {
 }
 
 body {
+    overflow-y: auto;
+    overflow-x: hidden;
 	color: #333;
 	margin: 0;
 	padding: 0px;
@@ -75,4 +77,7 @@ button:focus {
   .body.classic {
       padding: 1rem;;
   }
+}
+.body.modern {
+    background: #21242c;
 }

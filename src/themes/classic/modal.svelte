@@ -27,7 +27,7 @@
     }
 
     async function search() {
-        if (inputQuery) {
+        if (inputQuery && inputQuery.length > 3) {
             const position = await data.search(inputQuery)
             city = position.city;
             savedPosition = position;

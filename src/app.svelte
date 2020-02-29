@@ -1,25 +1,28 @@
 <script>
     import Classic from "./themes/classic/classic.svelte"
+    import Modern from "./themes/modern/modern.svelte"
     import { data } from "./store"
     import moment from 'moment';
-    document.getElementsByClassName("body")[0].classList.add("classic");
 
     data.init()
+    document.getElementsByClassName("body")[0].classList.add($data.theme ? $data.theme : "classic");
 
     let now; updateClock();
     let activePrayer; updateActivePrayer();
 
     function updateClock() {
-        now = moment().format("HH:mm:ss")
+        now = moment().format("HH:mm")
     }
 
     function updateActivePrayer() {
         if ($data.prayerTimes.length === 0) return;
         const nowTimestamp = moment().unix();
-        for (const pray of $data.prayerTimes) {
+        for (const key in $data.prayerTimes) {
+            const pray = $data.prayerTimes[key];
             const prayerTimestamp = moment(pray.value, "HH:mm").unix();
             if (nowTimestamp <= prayerTimestamp) {
-                activePrayer = pray.name;
+                activePrayer = pray;
+                activePrayer.index = key;
                 break;
             }
         }
@@ -28,14 +31,17 @@
 
         const isyaTimestamp = moment(isya.value, "HH:mm").unix();
         if (nowTimestamp > isyaTimestamp) {
-            activePrayer = "fajr"
+            activePrayer = $data.prayerTimes[0]
         }
     }
 
-    setInterval(updateClock, 1000)
+    setInterval(updateClock, 60000)
     setInterval(updateActivePrayer, 60000)
 
 </script>
 
+{#if $data.theme == "classic"}
 <Classic now={now} activePrayer={activePrayer}/>
-<!-- <Modern now={now} pray={pray} activePrayer={activePrayer} hijrCalendar={hijrCalendar} hijrYear={hijrYear} city={city}/> -->
+{:else}
+<Modern now={now} activePrayer={activePrayer}/>
+{/if}

@@ -1,9 +1,11 @@
 <script>
     import Modal from "./modal.svelte";
+    import moment from "moment";
     import { data } from "../../store"
 
     export let now;
     export let activePrayer;
+
     let modalActive = false;
 
     function handleLocationClick() {
@@ -19,7 +21,7 @@
     <section class="hero">
         <div class="hero-body hero-masjid">
             <div class="hijr">
-                <span>{$data.hijrCalendar}<br/>{$data.hijrYear}</span>
+                <span>{$data.hijrCalendar} {$data.hijrYear} <br> {moment().format("DD MMMM YYYY")}</span>
             </div>
             <div class="timenow">{now}</div>
             <div id="btn-location" on:click={handleLocationClick}>
@@ -30,7 +32,7 @@
     </section>
     <div class="columns is-desktop columns-pray-times is-marginless is-paddingless">
         {#each $data.prayerTimes as p}
-            <div class="column column-pray-time {p.name}" active="{p.name === activePrayer}">
+            <div class="column column-pray-time {p.name}" active="{p.name === activePrayer.name}">
                 <h2>{p.name}</h2>
                 <h3>{p.value}</h3>
             </div>
@@ -57,7 +59,7 @@
         height: 400px;
 
         .hijr{
-            bottom: 44%;
+            bottom: 38%;
             position: absolute;
             width: 100%;
             text-align: center;
