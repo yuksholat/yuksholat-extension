@@ -67,17 +67,3 @@ button:focus {
 	border-color: #666;
 }
 
-.body.classic {
-    padding-top:100px;
-    background-size: cover;
-    background: #e1dbcf !important;
-}
-
-@media only screen and (max-width: 800px) {
-  .body.classic {
-      padding: 1rem;;
-  }
-}
-.body.modern {
-    background: #21242c;
-}

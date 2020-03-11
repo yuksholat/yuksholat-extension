@@ -4,10 +4,31 @@
     export let now;
     export let activePrayer;
     let prayer;
-    let dropdownActive = false;
+    let locationDropdownActive = false;
+    let themeDropdownActive = false;
 
-    function toggleDropdown() {
-        dropdownActive = !dropdownActive;
+    function toggleLocationDropdown() {
+        locationDropdownActive = !locationDropdownActive;
+        if (themeDropdownActive && locationDropdownActive) {
+            themeDropdownActive = false;
+        }
+    }
+
+    function toggleThemeDropdown() {
+        themeDropdownActive = !themeDropdownActive;
+        if (themeDropdownActive && locationDropdownActive) {
+            locationDropdownActive = false;
+        }
+    }
+
+    function hideAllDropdown() {
+        themeDropdownActive = false;
+        locationDropdownActive = false;
+    }
+
+    function changeTheme(theme) {
+        data.changeTheme(theme);
+        themeDropdownActive = false;
     }
 
     $: {
@@ -37,7 +58,7 @@
             city = position.city;
             await data.setUserLocationData(position.latitude, position.longitude);
             inputQuery = ""
-            dropdownActive = false;
+            locationDropdownActive = false;
         }
     }
 
@@ -313,11 +334,16 @@
         }
     }
 
+    main {
+        background: #21242c;
+        width: 100%;
+        height: 100%;
+    }
 
 </style>
-
+<main>
 <div class="oval"></div>
-<div class="curtain {dropdownActive ? "is-active" : ""}" on:click={toggleDropdown}></div>
+<div class="curtain {locationDropdownActive || themeDropdownActive ? "is-active" : ""}" on:click={hideAllDropdown}></div>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
@@ -327,13 +353,31 @@
             </a>
         </div>
         <div class="navbar-setting">
-            <div class="dropdown is-right {dropdownActive ? "is-active" : ""}">
+            <div class="dropdown is-right {themeDropdownActive ? "is-active" : ""}">
                 <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" on:click={toggleDropdown}>
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" on:click={toggleThemeDropdown}>
+                        <span class="icon is-small">
+                            <i class="fas fa-palette"></i>
+                        </span>
+                        <span>Tema</span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content is-paddingless">
+                        <h4 style="margin-top:5px;">Ingin kembali ke tema yang lama?</h4>
+                        <div class="button-wrap" style="justify-content:center; margin-top:5px;">
+                            <button class="button is-primary is-center" on:click={() => changeTheme("classic")}>Klik disini</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown is-right {locationDropdownActive ? "is-active" : ""}">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" on:click={toggleLocationDropdown}>
                         <img src="/themes/modern/images/pin.svg" alt="open dropdown">
                         <span>{$data.city}</span>
                         <span class="icon is-small">
-                            {#if dropdownActive}
+                            {#if locationDropdownActive}
                                 <i class="fas fa-angle-up" aria-hidden="true"></i>
                             {:else}
                                 <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -440,3 +484,4 @@
         {/if}
     </div>
 </section>
+</main>

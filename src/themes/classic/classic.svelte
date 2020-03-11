@@ -7,6 +7,12 @@
     export let activePrayer;
 
     let modalActive = false;
+    let notification = true;
+
+    const notif = localStorage.getItem("theme_notification");
+    if (notif && notif === "off") {
+        notification = false;
+    }
 
     function handleLocationClick() {
         modalActive = !modalActive;
@@ -15,11 +21,30 @@
     function handleModalLocationClose() {
         modalActive = false;
     }
+
+    function changeTheme(theme) {
+        data.changeTheme(theme);
+    }
+
+    function removeNotification() {
+        const notif = localStorage.setItem("theme_notification", "off");
+        notification = false;
+    }
 </script>
 
+<main>
 <div class="main container">
     <section class="hero">
         <div class="hero-body hero-masjid">
+            {#if notification}
+                <div class="notification">
+                    <button class="delete" on:click={removeNotification}></button>
+                    <p on:click={() => changeTheme("modern")}>
+                    Ingin coba tema baru?
+                    <strong>Klik disini</strong>
+                    </p>
+                </div>
+            {/if}
             <div class="hijr">
                 <span>{$data.hijrCalendar} {$data.hijrYear} <br> {moment().format("DD MMMM YYYY")}</span>
             </div>
@@ -39,9 +64,26 @@
         {/each}
     </div>
 </div>
+</main>
 <Modal active={modalActive} onClose={handleModalLocationClose}/>
 
+
 <style type="text/scss">
+    main {
+        padding-top:100px;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background: #e1dbcf !important;
+    }
+
+    @media only screen and (max-width: 800px) {
+        main {
+            padding: 1rem;;
+            height: 100%;
+            width: 100%;
+        }
+    }
     .main {
         margin: auto;
         max-width: 800px;
@@ -187,7 +229,7 @@
             height: 300px;
             .hijr {
                 background: rgba(0,0,0,.3);
-                bottom: 19.6%;
+                bottom: 19.9%;
                 span {
                     color: #fff;
                 }
@@ -203,6 +245,15 @@
 
             }
         }
+    }
+
+    .notification {
+        background: rgba(255,255,255,.3);
+        width: 35%;
+        position: absolute;
+        top: 5%;
+        font-size: 14px;
+        cursor: pointer;
     }
 
 

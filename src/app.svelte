@@ -5,7 +5,6 @@
     import moment from 'moment';
 
     data.init()
-    document.getElementsByClassName("body")[0].classList.add($data.theme ? $data.theme : "classic");
 
     let now; updateClock();
     let activePrayer; updateActivePrayer();
@@ -40,8 +39,8 @@
 
 </script>
 
-{#if $data.theme == "classic"}
-<Classic now={now} activePrayer={activePrayer}/>
-{:else}
+{#if $data.theme == "modern"}
 <Modern now={now} activePrayer={activePrayer}/>
+{:else}
+<Classic now={now} activePrayer={activePrayer}/>
 {/if}

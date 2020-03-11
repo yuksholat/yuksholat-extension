@@ -18,8 +18,7 @@ function createDataStore() {
         longitude: 106.397789,
         tz: 7,
         city: "Jakarta",
-        theme: "modern"
-
+        theme: "classic"
     }
     const data = writable(defaults);
     const { subscribe, set, update } = data;
@@ -108,9 +107,10 @@ function createDataStore() {
     }
 
     const changeTheme = (theme) => {
-        updateData({ theme })
         const { latitude, longitude, city } = get(data)
         saveStorage({ latitude, longitude, city, theme });
+        window.location.reload();
+        updateData({ theme })
     }
 
     const init = async () => {
@@ -145,6 +145,7 @@ function createDataStore() {
         getCity,
         getPrayerTimes,
         search,
+        changeTheme,
         reset,
 	};
 }
