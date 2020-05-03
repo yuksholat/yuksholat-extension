@@ -1,11 +1,12 @@
 import { writable, get } from 'svelte/store';
-import { formatCity, parseUrlEncoded } from "./libs/utils"
+import { parseUrlEncoded } from "./libs/utils"
 import PrayerTimes from "./libs/prayer_times";
 import moment from "moment";
 import momentHijr from "moment-hijri";
 
 const storage = localStorage.getItem("data")
 const baseUrl = "https://api.yuksholat.com"
+// const baseUrl = "http://localhost:1323"
 
 moment.locale("en-EN");
 
@@ -30,7 +31,7 @@ function createDataStore() {
 
     const getPrayerTimes = () =>  {
         const $data = get(data)
-        let times = PrayTimes.getTimes(new Date(), [$data.latitude, $data.longitude], $data.tz);
+        let times = PrayTimes.getTimes(new Date(), [$data.latitude, $data.longitude], undefined);
         delete times.imsak;
         delete times.sunrise;
         delete times.sunset;
@@ -46,7 +47,6 @@ function createDataStore() {
     }
 
     const locate = () => {
-        const $data = get(data)
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(async function(position) {
                 // locate success
@@ -55,6 +55,7 @@ function createDataStore() {
 
                 resolve({ latitude, longitude });
             }, function(err) {
+                console.error(err)
                 resolve(false);
             });
         })
@@ -69,9 +70,9 @@ function createDataStore() {
             lat, long
         };
         const url = `${baseUrl}/locate?${parseUrlEncoded(data)}`;
-        const response = await fetch(url)
-        const address = await response.json()
-        const city = formatCity(address.results);
+        const result = await fetch(url)
+        const response = await result.json()
+        const city = response.city;
 
         return city;
     }
@@ -92,14 +93,11 @@ function createDataStore() {
             q
         };
         const url = `${baseUrl}/search?${parseUrlEncoded(params)}`;
-        const response = await fetch(url)
-        const data = await response.json()
+        const result = await fetch(url)
+        const response = await result.json()
 
-        if (data.results && data.results.length > 0) {
-            const city = formatCity(data.results);
-            const latitude = data.results[0].geometry.location.lat;
-            const longitude = data.results[0].geometry.location.lng;
-            return { city, latitude, longitude };
+        if (response) {
+            return response;
         }
 
         return null
