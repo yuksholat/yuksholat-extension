@@ -5,8 +5,7 @@ import moment from "moment";
 import momentHijr from "moment-hijri";
 
 const storage = localStorage.getItem("data")
-const baseUrl = "https://api.yuksholat.com"
-// const baseUrl = "http://localhost:1323"
+const baseUrl = "https://yuksholat-server.herokuapp.com"
 
 moment.locale("en-EN");
 
