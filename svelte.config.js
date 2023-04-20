@@ -8,13 +8,13 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-        alias: {
-            "@/*": "src/*",
-        },
+    alias: {
+      "@/*": "src/*",
+    },
     adapter: adapter({
       pages: "build",
       assets: "build",
-      fallback:null,
+      fallback: null,
       precompress: false,
       strict: true,
     }),

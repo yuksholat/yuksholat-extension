@@ -13,8 +13,6 @@
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^1.0.0",
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/cookie": "^0.5.1",
 		"@types/moment-hijri": "^2.1.0",
@@ -29,7 +27,6 @@
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"svelte-preprocess": "^5.0.3",
-		"sveltekit-adapter-browser-extension": "^0.3.0",
 		"sveltekit-adapter-chrome-extension": "^2.0.0",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
@@ -37,9 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bulma": "^0.9.4",
 		"hijri-js": "^1.0.25",
 		"moment": "^2.29.4",
-		"moment-hijri": "^2.1.2"
 	}
 }

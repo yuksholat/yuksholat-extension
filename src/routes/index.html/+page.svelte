@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '@/routes/styles.css';
-	import 'bulma/css/bulma.css';
 	import Classic from '@/themes/classic/classic.svelte';
 	import Modern from '@/themes/modern/modern.svelte';
 	import { data } from '@/store';
