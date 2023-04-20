@@ -6,7 +6,7 @@
   "author": "rizkifuad",
   "manifest_version": 3,
   "action": {
-    "default_icon": "favicon.svg",
+    "default_icon": "icon.png",
     "default_title": "Beatifully crafted prayer times widget for your chrome landing page"
   },
   "icons": {

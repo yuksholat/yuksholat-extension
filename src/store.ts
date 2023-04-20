@@ -14,7 +14,7 @@ const hijrDate = hijr.initialize();
 function createDataStore() {
 	const defaults = {
 		prayerTimes: [] as PrayerResult[],
-		hijrCalendar: hijrDate.today().monthName,
+		hijrCalendar: `${hijrDate.today().day} ${hijrDate.today().monthName}`,
 		hijrYear: hijrDate.today().year,
 		latitude: -5.7768256,
 		longitude: 106.397789,
