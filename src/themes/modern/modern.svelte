@@ -1,9 +1,10 @@
-<script>
+
+<script lang="ts">
     import { data } from "../../store"
     import moment from "moment"
-    export let now;
-    export let activePrayer;
-    let prayer;
+    export let now: any;
+    export let activePrayer: any;
+    let prayer: any[] = [];
     let locationDropdownActive = false;
     let themeDropdownActive = false;
 
@@ -26,7 +27,7 @@
         locationDropdownActive = false;
     }
 
-    function changeTheme(theme) {
+    function changeTheme(theme: string) {
         data.changeTheme(theme);
         themeDropdownActive = false;
     }
@@ -44,7 +45,7 @@
     async function handleLocate() {
         // isloading
         const position = await data.locate()
-        if (position) {
+        if (position && position.latitude && position.longitude) {
             city = await data.getCity(position.latitude, position.longitude);
             await data.setUserLocationData(position.latitude, position.longitude);
             window.location.reload()
@@ -62,13 +63,13 @@
         }
     }
 
-    function handleQueryKeydown(evt) {
+    function handleQueryKeydown(evt: any) {
         if (evt.key === "Enter") {
             search();
         }
     }
 </script>
-<style type="text/scss">
+<style lang="scss">
     .container {
         max-width: 1216px;
         display: flex;
@@ -388,7 +389,7 @@
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
                         <figure class="image is-128x128">
-                            <img src="/themes/modern/images/pinmap.svg" align="center">
+                            <img src="/themes/modern/images/pinmap.svg" alt="">
                         </figure>
                         <h4>Astagfirullah, lokasi tidak sesuai?</h4>
                         <p>Jangan kawatir, Alhamdulillah kamu bisa mencari lokasi manual dengan input kota dibawah ini.</p>

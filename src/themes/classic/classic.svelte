@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import Modal from "./modal.svelte";
     import moment from "moment";
     import { data } from "../../store"
 
-    export let now;
-    export let activePrayer;
+    export let now: any;
+    export let activePrayer: any;
 
     let modalActive = false;
     let notification = true;
@@ -22,7 +22,7 @@
         modalActive = false;
     }
 
-    function changeTheme(theme) {
+    function changeTheme(theme: string) {
         data.changeTheme(theme);
     }
 
@@ -57,7 +57,7 @@
     </section>
     <div class="columns is-desktop columns-pray-times is-marginless is-paddingless">
         {#each $data.prayerTimes as p}
-            <div class="column column-pray-time {p.name}" active="{p.name === activePrayer.name}">
+            <div class="column column-pray-time {p.name}" data-active="{p.name === activePrayer.name}">
                 <h2>{p.name}</h2>
                 <h3>{p.value}</h3>
             </div>
@@ -68,7 +68,7 @@
 <Modal active={modalActive} onClose={handleModalLocationClose}/>
 
 
-<style type="text/scss">
+<style lang="scss">
     main {
         padding-top:100px;
         height: 100%;
@@ -150,15 +150,15 @@
             }
         }
 
-        .column[active=true]{
+        .column[data-active=true]{
             background: rgb(226, 188, 93) !important
         }
 
-        .column[active=true] h2{
+        .column[data-active=true] h2{
             background: rgb(216, 177, 72) !important
         }
 
-        .column[active=true] h3{
+        .column[data-active=true] h3{
             color: white
         }
         .column:nth-child(1) {

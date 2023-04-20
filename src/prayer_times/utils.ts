@@ -1,4 +1,4 @@
-export function parseUrlEncoded (data) {
+export function parseUrlEncoded (data: Record<string, any>) {
     const params = new URLSearchParams();
     for (const key in data) {
         if (key) {
