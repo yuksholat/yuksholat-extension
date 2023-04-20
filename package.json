@@ -13,6 +13,7 @@
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^1.0.0",
+		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/cookie": "^0.5.1",
 		"@types/moment-hijri": "^2.1.0",
