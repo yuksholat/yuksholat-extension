@@ -5,7 +5,7 @@ import moment from "moment";
 import momentHijr from "moment-hijri";
 
 const storage = localStorage.getItem("data")
-const baseUrl = "https://yuksholat-server.herokuapp.com"
+const baseUrl = "https://yuksholat-server-rust.vercel.app/api"
 
 moment.locale("en-EN");
 
@@ -71,7 +71,8 @@ function createDataStore() {
         const url = `${baseUrl}/locate?${parseUrlEncoded(data)}`;
         const result = await fetch(url)
         const response = await result.json()
-        const city = response.city;
+        const responseData = response.data
+        const city = responseData.city;
 
         return city;
     }
@@ -96,7 +97,7 @@ function createDataStore() {
         const response = await result.json()
 
         if (response) {
-            return response;
+            return response.data;
         }
 
         return null
