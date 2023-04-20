@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '../styles.css';
+	import '@/routes/styles.css';
 	import 'bulma/css/bulma.css';
-	import Classic from '../../themes/classic/classic.svelte';
-	import Modern from '../../themes/modern/modern.svelte';
-	import { data } from '../../store';
+	import Classic from '@/themes/classic/classic.svelte';
+	import Modern from '@/themes/modern/modern.svelte';
+	import { data } from '@/store';
 	import moment from 'moment';
 
 	data.init();
